@@ -1,0 +1,58 @@
+{
+  "name": "java-process-information",
+  "version": "0.0.1",
+  "description": "Use java command line tools to get java process information",
+  "main": "target/index.js",
+  "homepage": "https://github.com/joeferner/java-process-information#readme",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/joeferner/java-process-information.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build"
+  },
+  "bin": {
+    "jmap-histo-parse": "target/jmap-histo-parse-cli.js",
+    "jps-parse": "target/jps-parse-cli.js"
+  },
+  "keywords": [
+    "java",
+    "jmap",
+    "jstack",
+    "jps"
+  ],
+  "author": "Joe Ferner <joe@fernsroth.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.9.1",
+    "@types/node": "^13.5.0",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.0.0",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run format && npm test",
+      "pre-push": "npm run lint && npm run format && npm test"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+ num     #instances         #bytes  class name (module)
+-------------------------------------------------------
+   1:       1235423      211959088  [B (java.base@11.0.4)
+   2:        124504      118347576  [Ljava.util.concurrent.ConcurrentHashMap$Node; (java.base@11.0.4)
+   3:        107160       52141224  [I (java.base@11.0.4)
+   4:        398977       37724864  [Ljava.lang.Object; (java.base@11.0.4)
+   5:        980481       23531544  java.lang.String (java.base@11.0.4)
+   6:         12203       19816064  [C (java.base@11.0.4)
+   7:          8829       16382200  [[I (java.base@11.0.4)
+   8:        458939       14686048  com.intellij.lang.javascript.psi.types.JSRecordTypeImpl$PropertySignatureImpl
+   9:        303474       14566752  com.intellij.util.containers.ConcurrentWeakKeySoftValueHashMap$SoftValue
+  10:        583446       14002704  java.util.Collections$SingletonList (java.base@11.0.4)
+  11:        393627       12596064  java.util.concurrent.ConcurrentHashMap$Node (java.base@11.0.4)
+  12:        314455       12578200  com.intellij.util.containers.ConcurrentWeakKeySoftValueHashMap$WeakKey
+  13:        361402       11564864  com.intellij.lang.javascript.psi.types.JSTypeBaseImpl$JSResolvedTypeIdImpl
+  14:        446355       10712520  com.intellij.lang.javascript.psi.types.JSRecordMemberSourceFactory$SingleMemberSource
+  15:        264229       10569160  com.intellij.psi.impl.source.tree.LeafPsiElement
+  16:        157418       10074752  java.util.concurrent.ConcurrentHashMap (java.base@11.0.4)
+  17:         75261        8793496  java.lang.Class (java.base@11.0.4)
+  18:        265616        8499712  com.intellij.lang.javascript.psi.types.JSTypeSource
+  19:        169872        8153856  com.intellij.lang.javascript.psi.types.JSTypeKeyTypeImpl
+  20:        187237        7489480  com.intellij.lang.javascript.psi.types.JSStringLiteralTypeImpl
+  21:        228745        7319840  java.lang.ref.ReferenceQueue (java.base@11.0.4)
+  22:         29324        7037760  com.jetbrains.jsonSchema.impl.JsonSchemaObject
+  23:        125081        7004536  com.intellij.psi.impl.source.tree.CompositeElement
+  24:        164926        6597040  com.intellij.psi.impl.source.tree.PsiWhiteSpaceImpl
+  25:         29843        6431312  [Ljava.lang.String; (java.base@11.0.4)
+  26:         64564        6193624  [J (java.base@11.0.4)
+  27:        142285        5691400  com.intellij.reference.SoftReference
+  28:        160364        5131648  java.util.HashMap$Node (java.base@11.0.4)
+  29:        163577        3925848  com.intellij.util.text.ImmutableText$CompositeNode
+  30:        228747        3659952  java.lang.ref.ReferenceQueue$Lock (java.base@11.0.4)
+  31:         34971        3584344  [Ljava.util.HashMap$Node; (java.base@11.0.4)
+  32:        111017        3552544  com.intellij.util.containers.ConcurrentWeakKeySoftValueHashMap
+  33:        110489        3535648  java.lang.ref.WeakReference (java.base@11.0.4)
+  34:        141758        3402192  java.util.ArrayList (java.base@11.0.4)
+  35:          7957        2903008  [Lsun.font.PhysicalFont; (java.desktop@11.0.4)
+  36:          7926        2891368  [Lsun.font.CharToGlyphMapper; (java.desktop@11.0.4)
+  37:         57866        2777568  com.google.gson.internal.LinkedTreeMap$Node
+  38:         69246        2769840  org.jdom.Attribute
+  39:        172716        2763456  com.intellij.util.text.ImmutableText$Leaf8BitNode
+  40:         57180        2744640  java.util.HashMap (java.base@11.0.4)
+  41:         77776        2488832  com.intellij.psi.impl.PsiCachedValueImpl
+  42:         61312        2452480  java.util.LinkedHashMap$Entry (java.base@11.0.4)
+  43:         59759        2390360  com.intellij.util.containers.hash.LinkedHashMap$Entry
+  44:            72        2360448  [Ljava.util.concurrent.ForkJoinTask; (java.base@11.0.4)
+  45:         57469        2298760  com.intellij.lang.javascript.psi.stubs.impl.TypeScriptSingleTypeStubImpl
+  46:         95427        2290248  com.intellij.psi.impl.source.SpineRef
+  47:         33036        2114304  com.intellij.lang.javascript.psi.impl.JSReferenceExpressionImpl
+  48:         60186        1925952  com.intellij.lang.javascript.psi.ecma6.impl.TypeScriptSingleTypeImpl
+  49:         43306        1732240  java.lang.ref.SoftReference (java.base@11.0.4)
+  50:         43113        1724520  com.intellij.lang.javascript.psi.types.JSTypeImpl
+  51:         71852        1724448  com.intellij.util.SmartList
+  52:        103391        1654256  com.intellij.psi.impl.source.SubstrateRef$StubRef
+  53:         50719        1623008  com.intellij.lang.javascript.psi.types.JSGenericTypeImpl
+  54:         60922        1462128  com.intellij.util.keyFMap.OneElementFMap
+  55:         19951        1436472  java.lang.reflect.Field (java.base@11.0.4)
+  56:         10750        1434024  [Z (java.base@11.0.4)
+  57:          2323        1421064  [S (java.base@11.0.4)
+  58:          3882        1414880  [Lsun.font.PhysicalStrike; (java.desktop@11.0.4)
+  59:         44205        1414560  java.util.Hashtable$Entry (java.base@11.0.4)
+  60:         44102        1411264  com.intellij.psi.impl.PsiParameterizedCachedValue
+  61:         43113        1379616  com.intellij.lang.javascript.psi.types.JSTypeImpl$$Lambda$3026/0x0000000102015040
+  62:          6527        1357616  sun.java2d.SunGraphics2D (java.desktop@11.0.4)
+  63:         32411        1296440  org.jdom.ContentList
+  64:         32285        1291400  org.jdom.Element
+  65:         25363        1217424  com.intellij.lang.javascript.psi.stubs.impl.JSAttributeListStubImpl
+  66:         50085        1202040  java.util.Collections$UnmodifiableRandomAccessList (java.base@11.0.4)
+  67:         24846        1192608  com.intellij.util.containers.ConcurrentIntKeySoftValueHashMap$MyRef
+  68:         47705        1181024  [Ljava.lang.Class; (java.base@11.0.4)
+  69:         49107        1178568  com.intellij.util.CachedValueBase$Data
+  70:         25822        1032880  com.intellij.openapi.vfs.newvfs.impl.VirtualDirectoryImpl
+  71:         11627        1023176  java.lang.reflect.Method (java.base@11.0.4)
+  72:         27996        1003280  [Lorg.jdom.Attribute;
+Total      13403597      873282008
