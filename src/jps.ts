@@ -38,7 +38,7 @@ export async function jps(options?: JpsOptions): Promise<JpsParseResults> {
     if (options.outputJvmArgumentsFromFlagFile) {
         command += ' -v';
     }
-    for (const flag of (options.flags || [])) {
+    for (const flag of options.flags || []) {
         command += ` "-J${flag}"`;
     }
     const { stdout, stderr } = await execPromise(command);

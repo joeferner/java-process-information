@@ -23,7 +23,7 @@ export function parseJps(output: string, stderr?: string): JpsParseResults {
     const results: JpsParseResults = {
         processes: [],
     };
-    for (let i = 0; i < lines.length;) {
+    for (let i = 0; i < lines.length; ) {
         const line = lines[i];
         i++;
 

@@ -5,8 +5,8 @@
   "main": "target/index.js",
   "homepage": "https://github.com/joeferner/java-process-information#readme",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/joeferner/java-process-information.git"
+    "type": "git",
+    "url": "https://github.com/joeferner/java-process-information.git"
   },
   "scripts": {
     "build": "tsc",
@@ -15,7 +15,8 @@
     "test:watch": "jest --watch",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "precommit": "npm run lint && npm run format && npm test"
   },
   "bin": {
     "jmap-histo-parse": "target/jmap-histo-parse-cli.js",
@@ -52,8 +53,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run format && npm test",
-      "pre-push": "npm run lint && npm run format && npm test"
+      "pre-commit": "npm run precommit"
     }
   }
 }

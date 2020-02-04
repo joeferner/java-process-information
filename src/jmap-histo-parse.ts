@@ -22,7 +22,7 @@ export function parseJmapHisto(output: string, stderr?: string): JMapParseResult
     const results: JMapParseResults = {
         objects: [],
     };
-    for (let i = 0; i < lines.length;) {
+    for (let i = 0; i < lines.length; ) {
         const line = lines[i];
         i++;
 

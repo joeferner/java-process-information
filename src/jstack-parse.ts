@@ -59,7 +59,7 @@ export function parseJStack(output: string, stderr?: string): JStackParseResults
     const results: JStackParseResults = {
         threads: [],
     };
-    for (let i = 0; i < lines.length;) {
+    for (let i = 0; i < lines.length; ) {
         const line = lines[i];
         i++;
 
