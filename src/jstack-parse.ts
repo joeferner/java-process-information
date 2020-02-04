@@ -1,12 +1,14 @@
-export interface ParseResults {
+import { cleanStderr } from './clean-stderr';
+
+export interface JStackParseResults {
     dateTime?: Date;
     jdk?: string;
     jniGlobalRefs?: number;
     jniWeakRefs?: number;
-    threads: Thread[];
+    threads: JStackThread[];
 }
 
-export enum ThreadState {
+export enum JStackThreadState {
     NEW = 'NEW',
     RUNNABLE = 'RUNNABLE',
     SLEEPING = 'SLEEPING',
@@ -21,7 +23,7 @@ export enum ThreadState {
     UNKNOWN = 'UNKNOWN',
 }
 
-export interface Thread {
+export interface JStackThread {
     name: string;
     daemon: boolean;
     javaThreadId?: number;
@@ -33,17 +35,17 @@ export interface Thread {
     nid?: number;
     stackMemoryRegion?: string;
     info?: string;
-    state?: ThreadState;
-    stackItems: StackItem[];
+    state?: JStackThreadState;
+    stackItems: JStackStackItem[];
 }
 
-export interface StackItem {
+export interface JStackStackItem {
     line: string;
 }
 
-export function parseJStack(output: string, stderr?: string): ParseResults {
+export function parseJStack(output: string, stderr?: string): JStackParseResults {
     if (stderr) {
-        stderr = stderr.replace(/^Picked up.*\r?\n?/gm, '').trim();
+        stderr = cleanStderr(stderr);
         if (stderr.indexOf('Operation not permitted') >= 0) {
             throw new Error('Operation not permitted');
         } else if (stderr.indexOf('No such process') >= 0) {
@@ -54,10 +56,10 @@ export function parseJStack(output: string, stderr?: string): ParseResults {
     }
 
     const lines = output.split('\n');
-    const results: ParseResults = {
+    const results: JStackParseResults = {
         threads: [],
     };
-    for (let i = 0; i < lines.length; ) {
+    for (let i = 0; i < lines.length;) {
         const line = lines[i];
         i++;
 
@@ -103,7 +105,7 @@ export function parseJStack(output: string, stderr?: string): ParseResults {
             const name = threadStartMatch[1];
             let info = threadStartMatch[2];
 
-            const thread: Thread = {
+            const thread: JStackThread = {
                 name,
                 daemon: info.indexOf('daemon') >= 0,
                 stackItems: [],
@@ -200,42 +202,42 @@ function parseTimeToMillis(time: string): number {
     throw new Error(`Could not parse time: ${time}`);
 }
 
-function parseThreadState(str: string): ThreadState {
+function parseThreadState(str: string): JStackThreadState {
     if (str === 'NEW') {
-        return ThreadState.NEW;
+        return JStackThreadState.NEW;
     }
     if (str === 'RUNNABLE') {
-        return ThreadState.RUNNABLE;
+        return JStackThreadState.RUNNABLE;
     }
     if (str === 'TERMINATED') {
-        return ThreadState.TERMINATED;
+        return JStackThreadState.TERMINATED;
     }
     if (str === 'UNKNOWN') {
-        return ThreadState.UNKNOWN;
+        return JStackThreadState.UNKNOWN;
     }
     if (str.startsWith('BLOCKED')) {
-        return ThreadState.BLOCKED_ON_MONITOR_ENTER;
+        return JStackThreadState.BLOCKED_ON_MONITOR_ENTER;
     }
     if (str.startsWith('TIMED_WAITING')) {
         if (str.indexOf('parking') >= 0) {
-            return ThreadState.PARKED_TIMED;
+            return JStackThreadState.PARKED_TIMED;
         }
         if (str.indexOf('sleeping') >= 0) {
-            return ThreadState.SLEEPING;
+            return JStackThreadState.SLEEPING;
         }
         if (str.indexOf('on object monitor') >= 0) {
-            return ThreadState.IN_OBJECT_WAIT_TIMED;
+            return JStackThreadState.IN_OBJECT_WAIT_TIMED;
         }
-        return ThreadState.TIMED_WAITING;
+        return JStackThreadState.TIMED_WAITING;
     }
     if (str.startsWith('WAITING')) {
         if (str.indexOf('on object monitor') >= 0) {
-            return ThreadState.IN_OBJECT_WAIT;
+            return JStackThreadState.IN_OBJECT_WAIT;
         }
         if (str.indexOf('parking') >= 0) {
-            return ThreadState.PARKED;
+            return JStackThreadState.PARKED;
         }
-        return ThreadState.WAITING;
+        return JStackThreadState.WAITING;
     }
     throw new Error(`Could not parse state: ${str}`);
 }

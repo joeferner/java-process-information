@@ -1,17 +1,19 @@
+import { cleanStderr } from './clean-stderr';
+
 export interface JpsParseResults {
     processes: JpsProcess[];
 }
 
 export interface JpsProcess {
     pid: number;
-    name: string;
+    name?: string;
     className?: string;
     args?: string[];
 }
 
 export function parseJps(output: string, stderr?: string): JpsParseResults {
     if (stderr) {
-        stderr = stderr.replace(/^Picked up.*\r?\n?/gm, '').trim();
+        stderr = cleanStderr(stderr);
         if (stderr.length > 0) {
             throw new Error(`Unhandled error: ${stderr}`);
         }
@@ -21,7 +23,7 @@ export function parseJps(output: string, stderr?: string): JpsParseResults {
     const results: JpsParseResults = {
         processes: [],
     };
-    for (let i = 0; i < lines.length; ) {
+    for (let i = 0; i < lines.length;) {
         const line = lines[i];
         i++;
 
@@ -40,6 +42,13 @@ export function parseJps(output: string, stderr?: string): JpsParseResults {
                 const name = details;
                 results.processes.push({ pid, name });
             }
+            continue;
+        }
+
+        const pidOnlyMatch = line.match(/^([0-9]+)$/);
+        if (pidOnlyMatch) {
+            const pid = parseInt(pidOnlyMatch[1], 10);
+            results.processes.push({ pid });
             continue;
         }
 

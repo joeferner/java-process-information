@@ -19,7 +19,8 @@
   },
   "bin": {
     "jmap-histo-parse": "target/jmap-histo-parse-cli.js",
-    "jps-parse": "target/jps-parse-cli.js"
+    "jps-parse": "target/jps-parse-cli.js",
+    "jstack-parse": "target/jstack-parse-cli.js"
   },
   "keywords": [
     "java",

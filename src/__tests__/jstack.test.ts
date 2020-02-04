@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { parseJStack, ThreadState } from '../jstack-parse';
+import { parseJStack, JStackThreadState } from '../jstack-parse';
 
 test('parse', () => {
     const jstack = fs.readFileSync(path.resolve(__dirname, 'jstack-output-01.txt'), 'utf-8');
@@ -24,7 +24,7 @@ test('parse', () => {
     expect(thread.nid).toBe(62);
     expect(thread.stackMemoryRegion).toBe('0x00007f090058c000');
     expect(thread.info).toBe('waiting on condition');
-    expect(thread.state).toBe(ThreadState.RUNNABLE);
+    expect(thread.state).toBe(JStackThreadState.RUNNABLE);
 });
 
 test('Operation not permitted', () => {

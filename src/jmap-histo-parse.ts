@@ -1,3 +1,5 @@
+import { cleanStderr } from './clean-stderr';
+
 export interface JMapParseResults {
     objects: JMapObject[];
 }
@@ -10,7 +12,7 @@ export interface JMapObject {
 
 export function parseJmapHisto(output: string, stderr?: string): JMapParseResults {
     if (stderr) {
-        stderr = stderr.replace(/^Picked up.*\r?\n?/gm, '').trim();
+        stderr = cleanStderr(stderr);
         if (stderr.length > 0) {
             throw new Error(`Unhandled error: ${stderr}`);
         }
@@ -26,7 +28,15 @@ export function parseJmapHisto(output: string, stderr?: string): JMapParseResult
 
         const objLineMatch = line.match(/[\s]*([0-9]+):[\s]+([0-9]+)[\s]+([0-9]+)[\s]+(.*)/);
         if (objLineMatch) {
-            console.log(objLineMatch);
+            results.objects.push({
+                instances: parseInt(objLineMatch[2], 10),
+                bytes: parseInt(objLineMatch[3], 10),
+                className: objLineMatch[4],
+            });
+            continue;
+        }
+
+        if (line.startsWith('Total')) {
             continue;
         }
 
