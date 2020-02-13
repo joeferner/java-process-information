@@ -27,6 +27,11 @@ test('parse', () => {
     expect(thread.state).toBe(JStackThreadState.RUNNABLE);
 });
 
+test('parse alternate JNI references', () => {
+    const result = parseJStack('JNI global references: 123');
+    expect(result.jniGlobalRefs).toBe(123);
+});
+
 test('Operation not permitted', () => {
     try {
         parseJStack('', '123: Operation not permitted');

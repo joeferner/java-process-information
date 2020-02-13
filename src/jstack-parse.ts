@@ -100,6 +100,12 @@ export function parseJStack(output: string, stderr?: string): JStackParseResults
             continue;
         }
 
+        const jniInfoAltMatch = line.match(/JNI global references: ([0-9]+)/);
+        if (jniInfoAltMatch) {
+            results.jniGlobalRefs = parseInt(jniInfoAltMatch[1], 10);
+            continue;
+        }
+
         const threadStartMatch = line.match(/^"(.*?)" (.*)$/);
         if (threadStartMatch) {
             const name = threadStartMatch[1];

@@ -44,6 +44,10 @@ export function parseJmapHisto(output: string, stderr?: string): JMapParseResult
             continue;
         }
 
+        if (line.match(/num.*#instances.*#bytes.*class name/)) {
+            continue;
+        }
+
         if (line.startsWith('-----------------')) {
             continue;
         }

@@ -17,6 +17,10 @@ test('jmap-histo-output-01.txt', () => {
     expect(result.objects[1].className).toBe('[Ljava.util.concurrent.ConcurrentHashMap$Node; (java.base@11.0.4)');
 });
 
+test('alternate header', () => {
+    parseJmapHisto('num     #instances         #bytes  class name');
+});
+
 test('JAVA_TOOL_OPTIONS', () => {
     const stderr =
         'Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8\n' +
